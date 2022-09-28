@@ -1,0 +1,52 @@
+mysql> show data bases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'data bases' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| bank               |
+| employee           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| stud               |
+| sys                |
+| worker             |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use bank;
+Database changed
+mysql> create table bemployee(s_no int(20),cust name varchar(49),acc_no int(40),balance int(50),cusbranch varchar(30));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name varchar(49),acc_no int(40),balance int(50),cusbranch varchar(30))' at line 1
+mysql> create table bemployee(s_no int(20),custname varchar(49),acc_no int(40),balance int(50),cusbranch varchar(30));
+Query OK, 0 rows affected, 3 warnings (0.03 sec)
+
+mysql> select *from bemployee;
+Empty set (0.01 sec)
+
+mysql> insert into bemployee(s_no,custname,acc_no,balance,branch)values (1,'ajith',12345,100000,'chennai')
+    -> insert into bemployee(s_no,custname,acc_no,balance,branch)values (1,'ajith',12345,100000,'chennai');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'insert into bemployee(s_no,custname,acc_no,balance,branch)values (1,'ajith',1234' at line 2
+mysql> insert into bemployee(s_no,custname,acc_no,balance,branch) values (1,'ajith',12345,100000,'chennai');
+ERROR 1054 (42S22): Unknown column 'branch' in 'field list'
+mysql> insert into bemployee(s_no,custname,acc_no,balance,cusbranch) values (1,'ajith',12345,100000,'chennai');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into bemployee(s_no,custname,acc_no,balance,cusbranch) values (2,'jeevan',12345,100000,'hyd');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into bemployee(s_no,custname,acc_no,balance,cusbranch) values (3,'jeevan',12345,100000,'chennai');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from bemployee;
++------+----------+--------+---------+-----------+
+| s_no | custname | acc_no | balance | cusbranch |
++------+----------+--------+---------+-----------+
+|    1 | ajith    |  12345 |  100000 | chennai   |
+|    2 | jeevan   |  12345 |  100000 | hyd       |
+|    3 | jeevan   |  12345 |  100000 | chennai   |
++------+----------+--------+---------+-----------+
+3 rows in set (0.00 sec)
